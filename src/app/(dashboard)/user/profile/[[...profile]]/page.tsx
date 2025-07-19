@@ -1,7 +1,7 @@
 import Header from '@/components/Header'
 import { UserProfile } from '@clerk/nextjs'
-import React from 'react'
 import { dark } from '@clerk/themes'
+import React from 'react'
 
 const UserProfilePage = () => {
   return (
