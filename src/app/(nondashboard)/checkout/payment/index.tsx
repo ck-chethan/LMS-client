@@ -28,7 +28,7 @@ const PaymentPageContent = () => {
     }
 
     const baseUrl = process.env.NEXT_PUBLIC_LOCAL_URL
-      ? `http://${process.env.NEXT_PUBLIC_LOCAL_URL}`
+      ? `${process.env.NEXT_PUBLIC_LOCAL_URL}`
       : process.env.NEXT_PUBLIC_VERCEL_URL
         ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
         : undefined
@@ -37,6 +37,19 @@ const PaymentPageContent = () => {
       elements,
       confirmParams: {
         return_url: `${baseUrl}/checkout?step=3&id=${courseId}`,
+        payment_method_data: {
+          billing_details: {
+            name: user?.fullName || 'Guest User',
+            email: user?.emailAddresses[0]?.emailAddress || 'guest@example.com',
+            address: {
+              line1: '123 Example Street',
+              city: 'New York',
+              state: 'NY',
+              postal_code: '10001',
+              country: 'US',
+            },
+          },
+        },
       },
       redirect: 'if_required',
     })
@@ -50,7 +63,8 @@ const PaymentPageContent = () => {
         amount: course?.price || 0,
       }
 
-      ;(await createTransaction(transactionData), navigateToStep(3))
+      await createTransaction(transactionData)
+      navigateToStep(3)
     }
   }
 
