@@ -8,16 +8,16 @@ import { useSearchParams } from 'next/navigation'
 const SignUpComponent = () => {
   const { user } = useUser()
   const searchParams = useSearchParams()
-  const isCheckoutPage = searchParams.get('showSignIn') !== null
+  const isCheckoutPage = searchParams.get('showSignUp') !== null
   const courseId = searchParams.get('id')
 
   const singnInUrl = isCheckoutPage
-    ? `/checkout?step=1&id=${courseId}&showSignIn=true`
+    ? `/checkout?step=1&id=${courseId}&showSignUp=true`
     : `/signin`
 
   const getRedirectUrl = () => {
     if (isCheckoutPage) {
-      return `/checkout?step=2&id=${courseId}`
+      return `/checkout?step=2&id=${courseId}&showSignUp=true`
     }
     const userType = user?.publicMetadata?.userType as string
     if (userType === 'teacher') {
