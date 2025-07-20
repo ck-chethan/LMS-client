@@ -12,7 +12,7 @@ const SignUpComponent = () => {
   const courseId = searchParams.get('id')
 
   const singnInUrl = isCheckoutPage
-    ? `/checkout?step=1&id=${courseId}&showSignUp=true`
+    ? `/checkout?step=1&id=${courseId}&showSignUp=false`
     : `/signin`
 
   const getRedirectUrl = () => {
