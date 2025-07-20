@@ -35,7 +35,7 @@ export default function DashboardLayout({
 
   return (
     <SidebarProvider>
-      <div className="dashboard" style={{ gap: '12rem' }}>
+      <div className="dashboard">
         <AppSidebar />
         <div className="dashboard__content">
           {/* {courseId && <ChaptersSidebar />} */}
