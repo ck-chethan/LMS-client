@@ -1,12 +1,12 @@
-"use client";
+'use client'
 
-import { useRef } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import ReactPlayer from "react-player";
-import Loading from "@/components/Loading";
-import { useCourseProgressData } from "@/hooks/useCourseProgressData";
+import { useRef } from 'react'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
+import ReactPlayer from 'react-player'
+import Loading from '@/components/Loading'
+import { useCourseProgressData } from '@/hooks/useCourseProgressData'
 
 const Course = () => {
   const {
@@ -20,10 +20,10 @@ const Course = () => {
     updateChapterProgress,
     hasMarkedComplete,
     setHasMarkedComplete,
-  } = useCourseProgressData();
-  console.log("currentChapter.video:", currentChapter);
+  } = useCourseProgressData()
+  console.log('currentChapter.video:', currentChapter)
 
-  const playerRef = useRef<ReactPlayer>(null);
+  const playerRef = useRef<ReactPlayer>(null)
 
   const handleProgress = ({ played }: { played: number }) => {
     if (
@@ -34,25 +34,25 @@ const Course = () => {
       userProgress?.sections &&
       !isChapterCompleted()
     ) {
-      setHasMarkedComplete(true);
+      setHasMarkedComplete(true)
       updateChapterProgress(
         currentSection.sectionId,
         currentChapter.chapterId,
         true
-      );
+      )
     }
-  };
+  }
 
-  if (isLoading) return <Loading />;
-  if (!user) return <div>Please sign in to view this course.</div>;
-  if (!course || !userProgress) return <div>Error loading course</div>;
+  if (isLoading) return <Loading />
+  if (!user) return <div>Please sign in to view this course.</div>
+  if (!course || !userProgress) return <div>Error loading course</div>
 
   return (
     <div className="course">
       <div className="course__container">
         <div className="course__breadcrumb">
           <div className="course__path">
-            {course.title} / {currentSection?.sectionTitle} /{" "}
+            {course.title} / {currentSection?.sectionTitle} /{' '}
             <span className="course__current-chapter">
               {currentChapter?.title}
             </span>
@@ -86,7 +86,7 @@ const Course = () => {
                 config={{
                   file: {
                     attributes: {
-                      controlsList: "nodownload",
+                      controlsList: 'nodownload',
                     },
                   },
                 }}
@@ -175,7 +175,7 @@ const Course = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Course;
+export default Course
