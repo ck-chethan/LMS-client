@@ -18,7 +18,10 @@ export const useCheckoutNavigation = () => {
       const showSignUp = isSignedIn ? 'true' : 'false'
 
       router.push(
-        `/checkout?id=${courseId}&step=${newStep}&showSignUp=${showSignUp}`
+        `/checkout?id=${courseId}&step=${newStep}&showSignUp=${showSignUp}`,
+        {
+          scroll: false,
+        }
       )
     },
     [router, courseId, isSignedIn]

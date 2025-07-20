@@ -50,7 +50,9 @@ const Landing = () => {
   const { data: courses, isLoading, isError } = useGetCoursesQuery({})
 
   const handleCourseClick = (courseId: string) => {
-    router.push(`/courses/${courseId}`)
+    router.push(`/courses/${courseId}`, {
+      scroll: false,
+    })
   }
 
   if (isLoading) return <LoadingSkeleton />
@@ -78,7 +80,7 @@ const Landing = () => {
             Join our community of learners and start your journey today!
           </p>
           <div className="landing__cta">
-            <Link href="/search">
+            <Link href="/search" scroll={false}>
               <div className="landing__cta-button">Explore Courses</div>
             </Link>
           </div>
@@ -92,7 +94,9 @@ const Landing = () => {
               fill
               priority={index === currentImage}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className={`landing__hero-image ${index === currentImage ? 'landing__hero-image--active' : ''}`}
+              className={`landing__hero-image ${
+                index === currentImage ? 'landing__hero-image--active' : ''
+              }`}
             />
           ))}
         </div>
